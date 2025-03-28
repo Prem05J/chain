@@ -169,8 +169,8 @@ func TestChainSimulator_REWA_MultiTransfer(t *testing.T) {
 
 	beforeBalanceStr1 := account1.Balance
 
-	egldValue := oneREWA.Mul(oneREWA, big.NewInt(3))
-	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, tokenIDs, egldValue)
+	rewaValue := oneREWA.Mul(oneREWA, big.NewInt(3))
+	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, tokenIDs, rewaValue)
 
 	txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
 	require.Nil(t, err)
@@ -178,8 +178,8 @@ func TestChainSimulator_REWA_MultiTransfer(t *testing.T) {
 
 	require.Equal(t, "success", txResult.Status.String())
 
-	egldLog := string(txResult.Logs.Events[0].Topics[0])
-	require.Equal(t, "REWA-000000", egldLog)
+	rewaLog := string(txResult.Logs.Events[0].Topics[0])
+	require.Equal(t, "REWA-000000", rewaLog)
 
 	err = cs.GenerateBlocks(10)
 	require.Nil(t, err)
@@ -190,7 +190,7 @@ func TestChainSimulator_REWA_MultiTransfer(t *testing.T) {
 
 	beforeBalance0, _ := big.NewInt(0).SetString(beforeBalanceStr0, 10)
 
-	expectedBalance0 := big.NewInt(0).Sub(beforeBalance0, egldValue)
+	expectedBalance0 := big.NewInt(0).Sub(beforeBalance0, rewaValue)
 	txsFee, _ := big.NewInt(0).SetString(txResult.Fee, 10)
 	expectedBalanceWithFee0 := big.NewInt(0).Sub(expectedBalance0, txsFee)
 
@@ -200,7 +200,7 @@ func TestChainSimulator_REWA_MultiTransfer(t *testing.T) {
 	require.Nil(t, err)
 
 	beforeBalance1, _ := big.NewInt(0).SetString(beforeBalanceStr1, 10)
-	expectedBalance1 := big.NewInt(0).Add(beforeBalance1, egldValue)
+	expectedBalance1 := big.NewInt(0).Add(beforeBalance1, rewaValue)
 
 	require.Equal(t, expectedBalance1.String(), account1.Balance)
 }
@@ -297,9 +297,9 @@ func TestChainSimulator_REWA_MultiTransfer_Insufficient_Funds(t *testing.T) {
 
 	beforeBalanceStr1 := account1.Balance
 
-	egldValue, _ := big.NewInt(0).SetString(beforeBalanceStr0, 10)
-	egldValue = egldValue.Add(egldValue, big.NewInt(13))
-	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, [][]byte{nftTokenID}, egldValue)
+	rewaValue, _ := big.NewInt(0).SetString(beforeBalanceStr0, 10)
+	rewaValue = rewaValue.Add(rewaValue, big.NewInt(13))
+	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, [][]byte{nftTokenID}, rewaValue)
 
 	txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
 	require.Nil(t, err)
@@ -419,9 +419,9 @@ func TestChainSimulator_REWA_MultiTransfer_Invalid_Value(t *testing.T) {
 
 	beforeBalanceStr1 := account1.Balance
 
-	egldValue := oneREWA.Mul(oneREWA, big.NewInt(3))
-	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, [][]byte{nftTokenID}, egldValue)
-	tx.Value = egldValue // invalid value field
+	rewaValue := oneREWA.Mul(oneREWA, big.NewInt(3))
+	tx = multiDCDTNFTTransferWithREWATx(nonce, addrs[0].Bytes, addrs[1].Bytes, [][]byte{nftTokenID}, rewaValue)
+	tx.Value = rewaValue // invalid value field
 
 	txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
 	require.Nil(t, err)
@@ -544,7 +544,7 @@ func TestChainSimulator_Multiple_REWA_Transfers(t *testing.T) {
 	// multi nft transfer with multiple REWA-000000 tokens
 	numTransfers := 3
 	encodedReceiver := hex.EncodeToString(addrs[1].Bytes)
-	egldValue := oneREWA.Mul(oneREWA, big.NewInt(3))
+	rewaValue := oneREWA.Mul(oneREWA, big.NewInt(3))
 
 	txDataField := []byte(strings.Join(
 		[]string{
@@ -553,13 +553,13 @@ func TestChainSimulator_Multiple_REWA_Transfers(t *testing.T) {
 			hex.EncodeToString(big.NewInt(int64(numTransfers)).Bytes()),
 			hex.EncodeToString([]byte("REWA-000000")),
 			"00",
-			hex.EncodeToString(egldValue.Bytes()),
+			hex.EncodeToString(rewaValue.Bytes()),
 			hex.EncodeToString(nftTokenID),
 			hex.EncodeToString(big.NewInt(1).Bytes()),
 			hex.EncodeToString(big.NewInt(int64(1)).Bytes()),
 			hex.EncodeToString([]byte("REWA-000000")),
 			"00",
-			hex.EncodeToString(egldValue.Bytes()),
+			hex.EncodeToString(rewaValue.Bytes()),
 		}, "@"),
 	)
 
@@ -588,8 +588,8 @@ func TestChainSimulator_Multiple_REWA_Transfers(t *testing.T) {
 
 	beforeBalance0, _ := big.NewInt(0).SetString(beforeBalanceStr0, 10)
 
-	expectedBalance0 := big.NewInt(0).Sub(beforeBalance0, egldValue)
-	expectedBalance0 = big.NewInt(0).Sub(expectedBalance0, egldValue)
+	expectedBalance0 := big.NewInt(0).Sub(beforeBalance0, rewaValue)
+	expectedBalance0 = big.NewInt(0).Sub(expectedBalance0, rewaValue)
 	txsFee, _ := big.NewInt(0).SetString(txResult.Fee, 10)
 	expectedBalanceWithFee0 := big.NewInt(0).Sub(expectedBalance0, txsFee)
 
@@ -599,13 +599,13 @@ func TestChainSimulator_Multiple_REWA_Transfers(t *testing.T) {
 	require.Nil(t, err)
 
 	beforeBalance1, _ := big.NewInt(0).SetString(beforeBalanceStr1, 10)
-	expectedBalance1 := big.NewInt(0).Add(beforeBalance1, egldValue)
-	expectedBalance1 = big.NewInt(0).Add(expectedBalance1, egldValue)
+	expectedBalance1 := big.NewInt(0).Add(beforeBalance1, rewaValue)
+	expectedBalance1 = big.NewInt(0).Add(expectedBalance1, rewaValue)
 
 	require.Equal(t, expectedBalance1.String(), account1.Balance)
 }
 
-func multiDCDTNFTTransferWithREWATx(nonce uint64, sndAdr, rcvAddr []byte, tokens [][]byte, egldValue *big.Int) *transaction.Transaction {
+func multiDCDTNFTTransferWithREWATx(nonce uint64, sndAdr, rcvAddr []byte, tokens [][]byte, rewaValue *big.Int) *transaction.Transaction {
 	transferData := make([]*utils.TransferDCDTData, 0)
 
 	for _, tokenID := range tokens {
@@ -629,7 +629,7 @@ func multiDCDTNFTTransferWithREWATx(nonce uint64, sndAdr, rcvAddr []byte, tokens
 			hexEncodedNumTransfers,
 			hexEncodedREWA,
 			hexEncodedREWANonce,
-			hex.EncodeToString(egldValue.Bytes()),
+			hex.EncodeToString(rewaValue.Bytes()),
 		}, "@"),
 	)
 

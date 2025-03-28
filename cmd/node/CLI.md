@@ -12,7 +12,7 @@ USAGE:
    node [global options]
    
 AUTHOR:
-   The DharitrI Team <contact@dharitri.com>
+   The DharitrI Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --genesis-file [path]                     The [path] for the genesis file. This JSON file contains initial data to bootstrap from, such as initial balances for accounts. (default: "./config/genesis.json")

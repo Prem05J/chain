@@ -45,13 +45,13 @@ func TestAsyncDCDTTransferWithSCCallShouldWork(t *testing.T) {
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(secondContractOwner))
 
 	token := []byte("miiutoken")
-	egldBalance := big.NewInt(10000000)
+	rewaBalance := big.NewInt(10000000)
 	dcdtBalance := big.NewInt(10000000)
-	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	// create accounts for owners
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	// deploy contracts on shard 1 and shard 2
 	gasPrice := uint64(10)
@@ -161,13 +161,13 @@ func TestAsyncDCDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(secondContractOwner))
 
 	token := []byte("miiutoken")
-	egldBalance := big.NewInt(10000000)
+	rewaBalance := big.NewInt(10000000)
 	dcdtBalance := big.NewInt(10000000)
-	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	// create accounts for owners
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	// deploy contracts on shard 1 and shard 2
 	gasPrice := uint64(10)

@@ -20,7 +20,7 @@ const (
 var (
 	// ZeroValue the variable for the zero big int
 	ZeroValue = big.NewInt(0)
-	// OneREWA the variable for one egld value
+	// OneREWA the variable for one rewa value
 	OneREWA = big.NewInt(1000000000000000000)
 	// MinimumStakeValue the variable for the minimum stake value
 	MinimumStakeValue = big.NewInt(0).Mul(OneREWA, big.NewInt(2500))

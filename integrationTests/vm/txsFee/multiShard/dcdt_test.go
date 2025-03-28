@@ -30,10 +30,10 @@ func TestDCDTTransferShouldWork(t *testing.T) {
 	rcvAddr := []byte("12345678901234567890123456789011")
 	require.Equal(t, uint32(1), testContext.ShardCoordinator.ComputeId(rcvAddr))
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasPrice := uint64(10)
 	gasLimit := uint64(40)

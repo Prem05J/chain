@@ -23,7 +23,7 @@ func CreateAccountWithDCDTBalance(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
 	dcdtNonce uint64,
 	dcdtValue *big.Int,
@@ -36,7 +36,7 @@ func CreateAccountWithDCDTBalance(
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
 	dcdtData := &dcdt.DCDigitalToken{
@@ -79,7 +79,7 @@ func CreateAccountWithNFT(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
 	attributes []byte,
 ) {
@@ -90,7 +90,7 @@ func CreateAccountWithNFT(
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
 	dcdtData := &dcdt.DCDigitalToken{
@@ -149,13 +149,13 @@ func CreateAccountWithDCDTBalanceAndRoles(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
 	dcdtNonce uint64,
 	dcdtValue *big.Int,
 	roles [][]byte,
 ) {
-	CreateAccountWithDCDTBalance(t, accnts, pubKey, egldValue, tokenIdentifier, dcdtNonce, dcdtValue, uint32(core.Fungible))
+	CreateAccountWithDCDTBalance(t, accnts, pubKey, rewaValue, tokenIdentifier, dcdtNonce, dcdtValue, uint32(core.Fungible))
 	SetDCDTRoles(t, accnts, pubKey, tokenIdentifier, roles)
 }
 

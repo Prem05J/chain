@@ -184,7 +184,7 @@ func (oap *VMOutputAccountsProcessor) updateSmartContractCodeStep(
 		return nil, err
 	}
 
-	// This check is desirable (not required though) since currently both Arwen and IELE send the code in the output account even for "regular" execution
+	// This check is desirable (not required though) since currently both Andes and IELE send the code in the output account even for "regular" execution
 	sameCode := bytes.Equal(outputAccount.Code, oap.sc.accounts.GetCode(stateAccount.GetCodeHash()))
 	sameCodeMetadata := bytes.Equal(outputAccountCodeMetadataBytes, stateAccount.GetCodeMetadata())
 	if sameCode && sameCodeMetadata {

@@ -5,8 +5,8 @@
 </div>
 <br>
 
-[![](https://img.shields.io/badge/made%20by-DharitrI-blue.svg)](http://dharitri.com/)
-[![](https://img.shields.io/badge/project-DharitrI%20Mainnet-blue.svg)](https://explorer.dharitri.com/)
+[![](https://img.shields.io/badge/made%20by-DharitrI-blue.svg)](http://dharitri.org/)
+[![](https://img.shields.io/badge/project-DharitrI%20Mainnet-blue.svg)](https://explorer.dharitri.org/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/TerraDharitri/drt-go-chain)](https://goreportcard.com/report/github.com/TerraDharitri/drt-go-chain)
 [![codecov](https://codecov.io/gh/TerraDharitri/drt-go-chain/branch/master/graph/badge.svg?token=MYS5EDASOJ)](https://codecov.io/gh/TerraDharitri/drt-go-chain)
 [![Contributors](https://img.shields.io/github/contributors/TerraDharitri/drt-go-chain)](https://github.com/TerraDharitri/drt-go-chain/graphs/contributors)
@@ -47,7 +47,7 @@ $ ./keygenerator
 
 ### Start the node 
 #### Step 4a: Join DharitrI testnet:
-Follow the steps outlined [here](https://docs.dharitri.com/validators/nodes-scripts/config-scripts/). This is because in order to join the testnet you need a specific node configuration.
+Follow the steps outlined [here](https://docs.dharitri.org/validators/nodes-scripts/config-scripts/). This is because in order to join the testnet you need a specific node configuration.
 ______
 OR
 ______
@@ -215,5 +215,5 @@ Please make sure your contributions adhere to our coding guidelines:
  - Commit messages should be prefixed with the package(s) they modify.
     - E.g. "outport/process: fixed a typo"
 
-Please see the [documentation](https://docs.dharitri.com/) for more details on the DharitrI protocol.
+Please see the [documentation](https://docs.dharitri.org/) for more details on the DharitrI protocol.
 

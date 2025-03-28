@@ -87,7 +87,7 @@ func initCliFlags() {
 	cliApp.Authors = []cli.Author{
 		{
 			Name:  "The DharitrI Team",
-			Email: "contact@dharitri.com",
+			Email: "contact@dharitri.org",
 		},
 	}
 }

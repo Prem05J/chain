@@ -1348,7 +1348,7 @@ func CreateTxProcessorWasmVMWithGasSchedule(
 	gasScheduleMap map[string]map[string]uint64,
 	enableEpochsConfig config.EnableEpochs,
 ) (*VMTestContext, error) {
-	return CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig(
+	return CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig(
 		senderNonce,
 		senderAddressBytes,
 		senderBalance,
@@ -1358,8 +1358,8 @@ func CreateTxProcessorWasmVMWithGasSchedule(
 	)
 }
 
-// CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig -
-func CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig(
+// CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig -
+func CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig(
 	senderNonce uint64,
 	senderAddressBytes []byte,
 	senderBalance *big.Int,
@@ -1438,7 +1438,7 @@ func CreateTxProcessorWasmVMWithVMConfig(
 	vmConfig *config.VirtualMachineConfig,
 	gasSchedule map[string]map[string]uint64,
 ) (*VMTestContext, error) {
-	return CreateTxProcessorArwenWithVMConfigAndRoundConfig(
+	return CreateTxProcessorAndesWithVMConfigAndRoundConfig(
 		enableEpochsConfig,
 		testscommon.GetDefaultRoundsConfig(),
 		vmConfig,
@@ -1446,8 +1446,8 @@ func CreateTxProcessorWasmVMWithVMConfig(
 	)
 }
 
-// CreateTxProcessorArwenWithVMConfigAndRoundConfig -
-func CreateTxProcessorArwenWithVMConfigAndRoundConfig(
+// CreateTxProcessorAndesWithVMConfigAndRoundConfig -
+func CreateTxProcessorAndesWithVMConfigAndRoundConfig(
 	enableEpochsConfig config.EnableEpochs,
 	roundsConfig config.RoundConfig,
 	vmConfig *config.VirtualMachineConfig,

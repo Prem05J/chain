@@ -12,7 +12,7 @@ USAGE:
    keygenerator [global options]
    
 AUTHOR:
-   The DharitrI Team <contact@dharitri.com>
+   The DharitrI Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --num-keys value  How many keys should generate. Example: 1 (default: 1)

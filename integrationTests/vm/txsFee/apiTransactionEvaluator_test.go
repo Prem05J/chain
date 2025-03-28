@@ -79,11 +79,11 @@ func TestAsyncCallsTransactionCost(t *testing.T) {
 	require.Nil(t, err)
 	defer testContext.Close()
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	senderAddr := []byte("12345678901234567890123456789011")
 	ownerAddr := []byte("12345678901234567890123456789010")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContext.Accounts, senderAddr, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, senderAddr, 0, rewaBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(2000)
@@ -139,10 +139,10 @@ func TestDCDTTransfer(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), 0, 0)
 	res, err := testContext.TxCostHandler.ComputeTransactionGasLimit(tx)
@@ -161,16 +161,16 @@ func TestAsyncDCDTTransfer(t *testing.T) {
 	require.Nil(t, err)
 	defer testContext.Close()
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("12345678901234567890123456789010")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, rewaBalance)
 
 	// create an address with DCDT token
 	sndAddr := []byte("12345678901234567890123456789012")
 
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	// deploy 2 contracts
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)

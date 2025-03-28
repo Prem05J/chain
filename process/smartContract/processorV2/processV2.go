@@ -71,7 +71,7 @@ type scProcessor struct {
 	argsParser         process.ArgumentsParser
 	dcdtTransferParser vmcommon.DCDTTransferParser
 	builtInFunctions   vmcommon.BuiltInFunctionContainer
-	arwenChangeLocker  common.Locker
+	andesChangeLocker  common.Locker
 
 	enableEpochsHandler common.EnableEpochsHandler
 	badTxForwarder      process.IntermediateTransactionHandler
@@ -202,7 +202,7 @@ func NewSmartContractProcessorV2(args scrCommon.ArgsNewSmartContractProcessor) (
 		badTxForwarder:      args.BadTxForwarder,
 		builtInFunctions:    args.BuiltInFunctions,
 		isGenesisProcessing: args.IsGenesisProcessing,
-		arwenChangeLocker:   args.WasmVMChangeLocker,
+		andesChangeLocker:   args.WasmVMChangeLocker,
 		vmOutputCacher:      args.VMOutputCacher,
 		enableEpochsHandler: args.EnableEpochsHandler,
 		storePerByte:        baseOperationCost["StorePerByte"],
@@ -405,14 +405,14 @@ func (sc *scProcessor) executeSmartContractCall(
 		return nil, process.ErrNilSCDestAccount
 	}
 
-	sc.arwenChangeLocker.RLock()
+	sc.andesChangeLocker.RLock()
 
 	userErrorVmOutput := &vmcommon.VMOutput{
 		ReturnCode: vmcommon.UserError,
 	}
 	vmExec, _, err := scrCommon.FindVMByScAddress(sc.vmContainer, vmInput.RecipientAddr)
 	if err != nil {
-		sc.arwenChangeLocker.RUnlock()
+		sc.andesChangeLocker.RUnlock()
 		returnMessage := "cannot get vm from address"
 		log.Trace("get vm from address error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(returnMessage))
@@ -425,7 +425,7 @@ func (sc *scProcessor) executeSmartContractCall(
 	var vmOutput *vmcommon.VMOutput
 	vmOutput, err = vmExec.RunSmartContractCall(vmInput)
 
-	sc.arwenChangeLocker.RUnlock()
+	sc.andesChangeLocker.RUnlock()
 	if err != nil {
 		log.Debug("run smart contract call error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))
@@ -1825,17 +1825,17 @@ func (sc *scProcessor) doDeploySmartContract(
 
 	failureContext.setGasLocked(vmInput.GasLocked)
 
-	sc.arwenChangeLocker.RLock()
+	sc.andesChangeLocker.RLock()
 	vmExec, err := sc.vmContainer.Get(vmType)
 	if err != nil {
-		sc.arwenChangeLocker.RUnlock()
+		sc.andesChangeLocker.RUnlock()
 		log.Trace("VM not found", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))
 		return vmcommon.UserError, nil
 	}
 
 	vmOutput, err = vmExec.RunSmartContractCreate(vmInput)
-	sc.arwenChangeLocker.RUnlock()
+	sc.andesChangeLocker.RUnlock()
 	if err != nil {
 		log.Debug("VM error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))

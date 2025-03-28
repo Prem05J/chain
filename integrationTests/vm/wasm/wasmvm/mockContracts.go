@@ -244,7 +244,7 @@ func CreateHostAndInstanceBuilder(t *testing.T,
 }
 
 // RegisterAsyncCallForMockContract is resued also in some tests before async context serialization
-func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, destinationAddress []byte, egldValue []byte, callData *txDataBuilder.TxDataBuilder) error {
+func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, destinationAddress []byte, rewaValue []byte, callData *txDataBuilder.TxDataBuilder) error {
 	testConfig := config.(*testcommon.TestConfig)
 
 	async := host.Async()
@@ -253,7 +253,7 @@ func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, de
 			Status:          vmhost.AsyncCallPending,
 			Destination:     destinationAddress,
 			Data:            callData.ToBytes(),
-			ValueBytes:      egldValue,
+			ValueBytes:      rewaValue,
 			SuccessCallback: testConfig.SuccessCallback,
 			ErrorCallback:   testConfig.ErrorCallback,
 			GasLimit:        testConfig.GasProvidedToChild,
@@ -265,6 +265,6 @@ func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, de
 		}
 		return nil
 	} else {
-		return async.RegisterLegacyAsyncCall(destinationAddress, callData.ToBytes(), egldValue)
+		return async.RegisterLegacyAsyncCall(destinationAddress, callData.ToBytes(), rewaValue)
 	}
 }

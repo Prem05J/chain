@@ -17,7 +17,7 @@ import (
 )
 
 var dcdtToken = []byte("miiutoken")
-var egldBalance = big.NewInt(50000000000)
+var rewaBalance = big.NewInt(50000000000)
 var dcdtBalance = big.NewInt(100)
 
 func TestAsyncCallLegacy(t *testing.T) {
@@ -38,7 +38,7 @@ func TestAsyncCallLegacy(t *testing.T) {
 		testContext,
 		"testdata/first/output/first.wasm",
 		ownerAddr, senderAddr, t,
-		egldBalance,
+		rewaBalance,
 		dcdtBalance,
 		gasPrice)
 
@@ -85,7 +85,7 @@ func TestAsyncCallMulti(t *testing.T) {
 		testContext,
 		"testdata/first/output/first.wasm",
 		ownerAddr, senderAddr, t,
-		egldBalance,
+		rewaBalance,
 		dcdtBalance,
 		gasPrice)
 
@@ -136,7 +136,7 @@ func TestAsyncCallTransferAndExecute(t *testing.T) {
 		testContext,
 		"testdata/first/output/first.wasm",
 		ownerAddr, senderAddr, t,
-		egldBalance,
+		rewaBalance,
 		dcdtBalance,
 		gasPrice)
 
@@ -197,7 +197,7 @@ func transferDCDTAndExecute(t *testing.T, numberOfCallsFromParent int, numberOfB
 		testContext,
 		"testdata/forwarderQueue/vault-promises.wasm",
 		ownerAddr, senderAddr, t,
-		egldBalance,
+		rewaBalance,
 		dcdtBalance,
 		gasPrice)
 
@@ -261,11 +261,11 @@ func deployForwarderAndTestContract(
 	ownerAddr []byte,
 	senderAddr []byte,
 	t *testing.T,
-	egldBalance *big.Int,
+	rewaBalance *big.Int,
 	dcdtBalance *big.Int,
 	gasPrice uint64) ([]byte, []byte) {
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContext.Accounts, senderAddr, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, senderAddr, 0, rewaBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(50000)
@@ -277,7 +277,7 @@ func deployForwarderAndTestContract(
 
 	forwarderSCAddress := utils.DoDeploySecond(t, testContext, pathToForwarder, ownerAccount, gasPrice, deployGasLimit, nil, big.NewInt(0))
 
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, forwarderSCAddress, egldBalance, dcdtToken, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, forwarderSCAddress, rewaBalance, dcdtToken, 0, dcdtBalance, uint32(core.Fungible))
 
 	utils.CleanAccumulatedIntermediateTransactions(t, testContext)
 
@@ -319,9 +319,9 @@ func TestAsyncCallMulti_CrossShard(t *testing.T) {
 	senderAddr := []byte("12345678901234567890123456789032")
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(senderAddr))
 
-	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	gasLimit := uint64(5000000)
 	firstAccount, _ := testContextFirstContract.Accounts.LoadAccount(firstContractOwner)
@@ -409,9 +409,9 @@ func TestAsyncCallTransferAndExecute_CrossShard(t *testing.T) {
 	senderAddr := []byte("12345678901234567890123456789032")
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(senderAddr))
 
-	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(childShard.Accounts, childOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(forwarderShard.Accounts, forwarderOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(childShard.Accounts, childOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(forwarderShard.Accounts, forwarderOwner, 0, rewaBalance)
 
 	gasLimit := uint64(5000000)
 	childOwnerAccount, _ := childShard.Accounts.LoadAccount(childOwner)
@@ -501,9 +501,9 @@ func transferDCDTAndExecuteCrossShard(t *testing.T, numberOfCallsFromParent int,
 	senderAddr := []byte("12345678901234567890123456789032")
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(senderAddr))
 
-	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(vaultShard.Accounts, vaultOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(forwarderShard.Accounts, forwarderOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(vaultShard.Accounts, vaultOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(forwarderShard.Accounts, forwarderOwner, 0, rewaBalance)
 
 	gasLimit := uint64(5000000)
 	vaultOwnerAccount, _ := vaultShard.Accounts.LoadAccount(vaultOwner)
@@ -515,7 +515,7 @@ func transferDCDTAndExecuteCrossShard(t *testing.T, numberOfCallsFromParent int,
 	pathToContract = "testdata/forwarderQueue/forwarder-queue-promises.wasm"
 	forwarderSCAddress := utils.DoDeploySecond(t, forwarderShard, pathToContract, forwarderOwnerAccount, gasPrice, gasLimit, nil, big.NewInt(0))
 
-	utils.CreateAccountWithDCDTBalance(t, forwarderShard.Accounts, forwarderSCAddress, egldBalance, dcdtToken, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, forwarderShard.Accounts, forwarderSCAddress, rewaBalance, dcdtToken, 0, dcdtBalance, uint32(core.Fungible))
 
 	utils.CheckDCDTNFTBalance(t, forwarderShard, forwarderSCAddress, dcdtToken, 0, dcdtBalance)
 

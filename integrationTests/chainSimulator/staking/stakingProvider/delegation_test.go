@@ -1033,7 +1033,7 @@ func TestChainSimulator_CreateNewDelegationContract(t *testing.T) {
 	// Test scenario done in staking 3.5 phase (staking v4 is not active)
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 2 delegators
-	// 3. Create a new delegation contract with 1250 egld
+	// 3. Create a new delegation contract with 1250 rewa
 	// 3. Add node to the delegation contract
 	// 4. Execute 2 delegation operations of 1250 REWA each, check the topup is 3750
 	// 5. Stake node, check the topup is 1250, check the node is staked
@@ -1072,7 +1072,7 @@ func TestChainSimulator_CreateNewDelegationContract(t *testing.T) {
 	// Test scenario done in staking v4 phase step 1
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 2 delegators
-	// 3. Create a new delegation contract with 1250 egld
+	// 3. Create a new delegation contract with 1250 rewa
 	// 3. Add node to the delegation contract
 	// 4. Execute 2 delegation operations of 1250 REWA each, check the topup is 3750
 	// 5. Stake node, check the topup is 1250, check the node is in action list
@@ -1111,7 +1111,7 @@ func TestChainSimulator_CreateNewDelegationContract(t *testing.T) {
 	// Test scenario done in staking v4 phase step 2
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 2 delegators
-	// 3. Create a new delegation contract with 1250 egld
+	// 3. Create a new delegation contract with 1250 rewa
 	// 3. Add node to the delegation contract
 	// 4. Execute 2 delegation operations of 1250 REWA each, check the topup is 3750
 	// 5. Stake node, check the topup is 1250, check the node is in action list
@@ -1150,7 +1150,7 @@ func TestChainSimulator_CreateNewDelegationContract(t *testing.T) {
 	// Test scenario done in staking v4 phase step 3
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 2 delegators
-	// 3. Create a new delegation contract with 1250 egld
+	// 3. Create a new delegation contract with 1250 rewa
 	// 3. Add node to the delegation contract
 	// 4. Execute 2 delegation operations of 1250 REWA each, check the topup is 3750
 	// 5. Stake node, check the topup is 1250, check the node is in action list
@@ -1402,7 +1402,7 @@ func TestChainSimulator_MaxDelegationCap(t *testing.T) {
 	// Test scenario done in staking 3.5 phase (staking v4 is not active)
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 3 delegators
-	// 3. Create a new delegation contract with 1250 egld and maximum delegation cap of 3000 REWA
+	// 3. Create a new delegation contract with 1250 rewa and maximum delegation cap of 3000 REWA
 	// 4. Add node to the delegation contract
 	// 5. Delegate from user A 1250 REWA, check the topup is 2500
 	// 6. Delegate from user B 501 REWA, check it fails
@@ -1443,7 +1443,7 @@ func TestChainSimulator_MaxDelegationCap(t *testing.T) {
 	// Test scenario done in staking v4 phase step 1
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 3 delegators
-	// 3. Create a new delegation contract with 1250 egld and maximum delegation cap of 3000 REWA
+	// 3. Create a new delegation contract with 1250 rewa and maximum delegation cap of 3000 REWA
 	// 4. Add node to the delegation contract
 	// 5. Delegate from user A 1250 REWA, check the topup is 2500
 	// 6. Delegate from user B 501 REWA, check it fails
@@ -1484,7 +1484,7 @@ func TestChainSimulator_MaxDelegationCap(t *testing.T) {
 	// Test scenario done in staking v4 phase step 2
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 3 delegators
-	// 3. Create a new delegation contract with 1250 egld and maximum delegation cap of 3000 REWA
+	// 3. Create a new delegation contract with 1250 rewa and maximum delegation cap of 3000 REWA
 	// 4. Add node to the delegation contract
 	// 5. Delegate from user A 1250 REWA, check the topup is 2500
 	// 6. Delegate from user B 501 REWA, check it fails
@@ -1525,7 +1525,7 @@ func TestChainSimulator_MaxDelegationCap(t *testing.T) {
 	// Test scenario done in staking v4 phase step 3
 	// 1. Add a new validator private key in the multi key handler
 	// 2. Set the initial state for the owner and the 3 delegators
-	// 3. Create a new delegation contract with 1250 egld
+	// 3. Create a new delegation contract with 1250 rewa
 	// 4. Add node to the delegation contract
 	// 5. Delegate from user A 1250 REWA, check the topup is 2500
 	// 6. Delegate from user B 501 REWA, check it fails
@@ -1817,9 +1817,9 @@ func TestChainSimulator_MergeDelegation(t *testing.T) {
 	}
 
 	// Test steps:
-	// 1. User A - Stake 1 node to have 100 egld more than minimum required stake value
+	// 1. User A - Stake 1 node to have 100 rewa more than minimum required stake value
 	// 2. User A - Execute `makeNewContractFromValidatorData` to create delegation contract based on User A account
-	// 3. User B - Stake 1 node with more than 2500 egld
+	// 3. User B - Stake 1 node with more than 2500 rewa
 	// 4. User A - Execute `whiteListForMerge@addressA` in order to whitelist for merge User B
 	// 5. User B - Execute `mergeValidatorToDelegationWithWhitelist@delegationContract` in order to merge User B to delegation contract created at step 2.
 
@@ -1974,7 +1974,7 @@ func testChainSimulatorMergingDelegation(t *testing.T, cs chainSimulatorIntegrat
 	err = cs.GenerateBlocks(1)
 	require.Nil(t, err)
 
-	log.Info("Step 1. User A: - stake 1 node to have 100 egld more than minimum stake value")
+	log.Info("Step 1. User A: - stake 1 node to have 100 rewa more than minimum stake value")
 	stakeValue := big.NewInt(0).Set(chainSimulatorIntegrationTests.MinimumStakeValue)
 	addedStakedValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(100))
 	stakeValue.Add(stakeValue, addedStakedValue)
@@ -2004,7 +2004,7 @@ func testChainSimulatorMergingDelegation(t *testing.T, cs chainSimulatorIntegrat
 
 	testBLSKeyIsInQueueOrAuction(t, metachainNode, delegationAddress, blsKeys[0], addedStakedValue, 1)
 
-	log.Info("Step 3. User B: - stake 1 node to have 100 egld more")
+	log.Info("Step 3. User B: - stake 1 node to have 100 rewa more")
 	stakeValue = big.NewInt(0).Set(chainSimulatorIntegrationTests.MinimumStakeValue)
 	addedStakedValue = big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(100))
 	stakeValue.Add(stakeValue, addedStakedValue)

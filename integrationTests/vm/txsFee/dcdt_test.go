@@ -29,10 +29,10 @@ func TestDCDTTransferShouldWork(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(40)
 	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
@@ -69,10 +69,10 @@ func TestDCDTTransferShouldWorkToMuchGasShouldConsumeAllGas(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(1000)
 	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
@@ -109,10 +109,10 @@ func TestDCDTTransferInvalidDCDTValueShouldConsumeGas(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(1000)
 	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100000000+1), gasPrice, gasLimit)
@@ -124,7 +124,7 @@ func TestDCDTTransferInvalidDCDTValueShouldConsumeGas(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckDCDTBalance(t, testContext, sndAddr, token, egldBalance)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, rewaBalance)
 
 	expectedReceiverBalance := big.NewInt(0)
 	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
@@ -153,10 +153,10 @@ func TestDCDTTransferCallBackOnErrorShouldNotGenerateSCRsFurther(t *testing.T) {
 	rcvAddr := bytes.Repeat([]byte{0}, 32)
 	rcvAddr[12] = 1
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	hexEncodedToken := hex.EncodeToString(token)
 	dcdtValueEncoded := hex.EncodeToString(big.NewInt(100).Bytes())

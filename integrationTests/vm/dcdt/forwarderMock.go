@@ -153,7 +153,7 @@ func DoAsyncCallMock(instanceMock *mock.InstanceMock, config interface{}) {
 
 		args := host.Runtime().Arguments()
 		destAddress := args[0]
-		egldValue := args[1]
+		rewaValue := args[1]
 		function := string(args[2])
 
 		callData := txDataBuilder.NewBuilder()
@@ -162,7 +162,7 @@ func DoAsyncCallMock(instanceMock *mock.InstanceMock, config interface{}) {
 			callData.Bytes(args[a])
 		}
 
-		err := wasmvm.RegisterAsyncCallForMockContract(host, config, destAddress, egldValue, callData)
+		err := wasmvm.RegisterAsyncCallForMockContract(host, config, destAddress, rewaValue, callData)
 		if err != nil {
 			host.Runtime().SignalUserError(err.Error())
 			return instance

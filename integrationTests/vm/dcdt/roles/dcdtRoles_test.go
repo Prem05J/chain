@@ -295,7 +295,7 @@ func TestDCDTMintTransferAndExecute(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddress := dcdt.DeployNonPayableSmartContract(t, nodes, idxProposers, &nonce, &round, "../testdata/egld-dcdt-swap.wasm")
+	scAddress := dcdt.DeployNonPayableSmartContract(t, nodes, idxProposers, &nonce, &round, "../testdata/rewa-dcdt-swap.wasm")
 
 	// issue DCDT by calling exec on dest context on child contract
 	ticker := "DSN"

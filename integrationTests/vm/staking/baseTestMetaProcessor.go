@@ -14,7 +14,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/display"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
-	arwenConfig "github.com/TerraDharitri/drt-go-chain-vm-v3/config"
+	andesConfig "github.com/TerraDharitri/drt-go-chain-vm-v3/config"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
@@ -210,7 +210,7 @@ func saveNodesConfig(
 }
 
 func createGasScheduleNotifier() core.GasScheduleNotifier {
-	gasSchedule := arwenConfig.MakeGasMapForTests()
+	gasSchedule := andesConfig.MakeGasMapForTests()
 	defaults.FillGasMapInternal(gasSchedule, 1)
 	return testscommon.NewGasScheduleNotifierMock(gasSchedule)
 }

@@ -328,7 +328,7 @@ func TestInitConfigMetrics(t *testing.T) {
 		"drt_cleanup_auction_on_low_waiting_list_enable_epoch":                 uint32(98),
 		"drt_always_merge_contexts_in_eei_enable_epoch":                        uint32(99),
 		"drt_dynamic_dcdt_enable_epoch":                                        uint32(100),
-		"drt_egld_in_multi_transfer_enable_epoch":                              uint32(101),
+		"drt_rewa_in_multi_transfer_enable_epoch":                              uint32(101),
 		"drt_crypto_opcodes_v2_enable_epoch":                                   uint32(102),
 		"drt_set_sc_to_sc_log_event_enable_epoch":                              uint32(103),
 		"drt_fix_relayed_base_cost_enable_epoch":                               uint32(104),

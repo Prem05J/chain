@@ -53,7 +53,7 @@ func testDeployContractAndTransferValue(t *testing.T, scProcessorV2EnabledEpoch 
 	testContextDst.TxsLogsProcessor.Clean()
 
 	receiverHex := hex.EncodeToString(scAddressShardDestination)
-	tx := vm.CreateTransaction(1, big.NewInt(1000000), ownerAddress, scAddrShardSource, 10, 20000, []byte("send_egld@"+receiverHex))
+	tx := vm.CreateTransaction(1, big.NewInt(1000000), ownerAddress, scAddrShardSource, 10, 20000, []byte("send_rewa@"+receiverHex))
 	retCode, err := testContextSource.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)

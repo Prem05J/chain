@@ -6,6 +6,6 @@ Please see [Releases](https://github.com/TerraDharitri/drt-go-chain/releases). W
 
 ## Reporting a Vulnerability
 
-Important note: for any immediate security report please proceed to our [report page](https://dharitri.com/report).
+Important note: for any immediate security report please proceed to our [report page](https://dharitri.org/report).
 
-More details about our Responsible Disclosure Policy are found [here](https://dharitri.com/legal/responsible-disclosure-policy)
+More details about our Responsible Disclosure Policy are found [here](https://dharitri.org/legal/responsible-disclosure-policy)

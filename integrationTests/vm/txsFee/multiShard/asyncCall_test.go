@@ -44,11 +44,11 @@ func TestAsyncCallShouldWork(t *testing.T) {
 	senderAddr := []byte("12345678901234567890123456789032")
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(senderAddr))
 
-	egldBalance := big.NewInt(1000000000)
+	rewaBalance := big.NewInt(1000000000)
 
-	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	gasPrice := uint64(10)
 	deployGasLimit := uint64(50000)
@@ -152,11 +152,11 @@ func TestAsyncCallDisabled(t *testing.T) {
 	senderAddr := []byte("12345678901234567890123456789032")
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(senderAddr))
 
-	egldBalance := big.NewInt(1000000000)
+	rewaBalance := big.NewInt(1000000000)
 
-	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextSender.Accounts, senderAddr, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	gasPrice := uint64(10)
 	deployGasLimit := uint64(50000)

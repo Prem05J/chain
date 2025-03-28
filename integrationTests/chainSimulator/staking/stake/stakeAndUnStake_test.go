@@ -435,7 +435,7 @@ func checkValidatorsRating(t *testing.T, validatorStatistics map[string]*validat
 // Test description
 //  Stake funds - happy flow
 //
-//  Preconditions: have an account with egld and 2 staked nodes (2500 stake per node) - directly staked, and no unstake
+//  Preconditions: have an account with rewa and 2 staked nodes (2500 stake per node) - directly staked, and no unstake
 //
 //  1. Check the stake amount for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current REWA balance
 //  2. Create from the owner of staked nodes a transaction to stake 1 REWA and send it to the network
@@ -1696,7 +1696,7 @@ func TestChainSimulator_DirectStakingNodes_WithdrawUnstakedInBatches(t *testing.
 	}
 
 	// Test Steps
-	// 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.
+	// 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.
 	// 2. Send the transactions in consecutive epochs, one TX in each epoch.
 	// 3. Wait for the epoch when first tx unbonding period ends.
 	// 4. Create a transaction for withdraw and send it to the network
@@ -1873,7 +1873,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Nil(t, err)
 	balanceBeforeUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
 
-	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 egld, second one unstaking 12 egld and third one unstaking 13 egld.")
+	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 rewa, second one unstaking 12 rewa and third one unstaking 13 rewa.")
 	log.Info("Step 2. Send the transactions in consecutive epochs, one TX in each epoch.")
 
 	unStakeValue1 := big.NewInt(11)
@@ -2059,7 +2059,7 @@ func TestChainSimulator_DirectStakingNodes_WithdrawUnstakedInEpoch(t *testing.T)
 	}
 
 	// Test Steps
-	// 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.
+	// 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.
 	// 2. Send the transactions consecutively in the same epoch
 	// 3. Wait for the epoch when unbonding period ends.
 	// 4. Create a transaction for withdraw and send it to the network
@@ -2232,7 +2232,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	require.Nil(t, err)
 	balanceBeforeUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
 
-	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.")
+	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.")
 	log.Info("Step 2. Send the transactions in consecutively in same epoch.")
 
 	unStakeValue1 := big.NewInt(11)

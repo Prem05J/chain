@@ -24,11 +24,11 @@ func TestDCDTLocalMintShouldWork(t *testing.T) {
 
 	sndAddr := []byte("12345678901234567890123456789012")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
 	roles := [][]byte{[]byte(core.DCDTRoleLocalMint), []byte(core.DCDTRoleLocalBurn)}
-	utils.CreateAccountWithDCDTBalanceAndRoles(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, roles)
+	utils.CreateAccountWithDCDTBalanceAndRoles(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, roles)
 
 	gasLimit := uint64(40)
 	tx := utils.CreateDCDTLocalMintTx(0, sndAddr, sndAddr, token, big.NewInt(100), gasPrice, gasLimit)
@@ -58,10 +58,10 @@ func TestDCDTLocalMintNotAllowedShouldErr(t *testing.T) {
 
 	sndAddr := []byte("12345678901234567890123456789012")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(40)
 	tx := utils.CreateDCDTLocalMintTx(0, sndAddr, sndAddr, token, big.NewInt(100), gasPrice, gasLimit)

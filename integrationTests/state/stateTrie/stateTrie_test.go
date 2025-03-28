@@ -2585,11 +2585,11 @@ func removeKeysFromAccountsStartingWithIndex(startIndex uint32,
 func increaseBalanceForAccountsStartingWithIndex(
 	startIndex uint32,
 	nbAccounts uint32,
-	egldValue uint32,
+	rewaValue uint32,
 	adb *state.AccountsDB,
 ) ([]byte, error) {
 	for i := startIndex; i < startIndex+nbAccounts; i++ {
-		increaseBalanceForAccountWithIndex(i, egldValue, adb)
+		increaseBalanceForAccountWithIndex(i, rewaValue, adb)
 	}
 	return adb.Commit()
 }
@@ -2597,11 +2597,11 @@ func increaseBalanceForAccountsStartingWithIndex(
 func decreaseBalanceForAccountsStartingWithIndex(
 	startIndex uint32,
 	nbAccounts uint32,
-	egldValue uint32,
+	rewaValue uint32,
 	adb *state.AccountsDB,
 ) ([]byte, error) {
 	for i := startIndex; i < startIndex+nbAccounts; i++ {
-		decreaseBalanceForAccountWithIndex(i, egldValue, adb)
+		decreaseBalanceForAccountWithIndex(i, rewaValue, adb)
 	}
 	return adb.Commit()
 }
@@ -2623,21 +2623,21 @@ func checkAccountBalance(t *testing.T, index uint32, expectedREWAValue uint32, a
 	require.Equal(t, expectedREWAValueDenominated, actualValue)
 }
 
-func decreaseBalanceForAccountWithIndex(index uint32, egldValue uint32, adb *state.AccountsDB) {
-	egldValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", egldValue)+denomination, 10)
+func decreaseBalanceForAccountWithIndex(index uint32, rewaValue uint32, adb *state.AccountsDB) {
+	rewaValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", rewaValue)+denomination, 10)
 
 	acc, _ := adb.LoadAccount(getDummyAccountAddressFromIndex(index))
 	accState := acc.(state.UserAccountHandler)
-	_ = accState.SubFromBalance(egldValueDenominated)
+	_ = accState.SubFromBalance(rewaValueDenominated)
 	_ = adb.SaveAccount(accState)
 }
 
-func increaseBalanceForAccountWithIndex(index uint32, egldValue uint32, adb *state.AccountsDB) {
-	egldValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", egldValue)+denomination, 10)
+func increaseBalanceForAccountWithIndex(index uint32, rewaValue uint32, adb *state.AccountsDB) {
+	rewaValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", rewaValue)+denomination, 10)
 
 	acc, _ := adb.LoadAccount(getDummyAccountAddressFromIndex(index))
 	accState := acc.(state.UserAccountHandler)
-	_ = accState.AddToBalance(egldValueDenominated)
+	_ = accState.AddToBalance(rewaValueDenominated)
 	_ = adb.SaveAccount(accState)
 }
 

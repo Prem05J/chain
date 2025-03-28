@@ -27,10 +27,10 @@ func TestMultiDCDTTransferShouldWork(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 	secondToken := []byte("second")
 	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, dcdtBalance, uint32(core.Fungible))
 
@@ -88,10 +88,10 @@ func TestMultiDCDTTransferFailsBecauseOfMaxLimit(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
 	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, dcdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 	secondToken := []byte("second")
 	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, dcdtBalance, uint32(core.Fungible))
 

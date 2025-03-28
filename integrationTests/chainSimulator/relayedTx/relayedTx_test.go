@@ -44,7 +44,7 @@ const (
 	extraGasLimitForGuarded                 = minGasLimit
 	extraGasDCDTTransfer                    = 250000
 	extraGasMultiDCDTTransferPerToken       = 1100000
-	egldTicker                              = "REWA-000000"
+	rewaTicker                              = "REWA-000000"
 )
 
 var (
@@ -593,7 +593,7 @@ func testRelayedV3DCDTTransfer(
 		dcdtBalanceReceiver := getDCDTBalance(t, cs, receiver, 0, ticker)
 		require.Equal(t, transferValue.String(), dcdtBalanceReceiver.String())
 
-		// check receiver egld balance unchanged if tx is relayed by third party
+		// check receiver rewa balance unchanged if tx is relayed by third party
 		if !relayedByReceiver {
 			receiverBalanceAfter := getBalance(t, cs, receiver)
 			require.Equal(t, initialBalance.String(), receiverBalanceAfter.String())
@@ -647,14 +647,14 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 		ticker := issueToken(t, cs, owner, "TESTTOKEN", "TST", initialSupply)
 
 		transferValue := big.NewInt(1000)
-		egldTransferValue := oneREWA
+		rewaTransferValue := oneREWA
 
 		// if sender is not owner, send some new tokens to the sender
 		if !senderIsIssuer {
 			txDataTransfer := "MultiDCDTNFTTransfer@" +
 				hex.EncodeToString(sender.Bytes) + "@02@" +
 				hex.EncodeToString([]byte(ticker)) + "@00@" + hex.EncodeToString(transferValue.Bytes()) + "@" +
-				hex.EncodeToString([]byte(egldTicker)) + "@00@" + hex.EncodeToString(egldTransferValue.Bytes())
+				hex.EncodeToString([]byte(rewaTicker)) + "@00@" + hex.EncodeToString(rewaTransferValue.Bytes())
 			gasLimit := minGasLimit + len(txDataTransfer)*1500 + extraGasMultiDCDTTransferPerToken*2
 			ownerNonce := getNonce(t, cs, owner)
 
@@ -667,7 +667,7 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 			require.Equal(t, transferValue.String(), dcdtBalanceSender.String())
 
 			balanceSender := getBalance(t, cs, sender)
-			require.Equal(t, egldTransferValue.String(), balanceSender.String())
+			require.Equal(t, rewaTransferValue.String(), balanceSender.String())
 		}
 
 		senderBalanceBefore := getBalance(t, cs, sender)
@@ -676,7 +676,7 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 		txDataTransfer := "MultiDCDTNFTTransfer@" +
 			hex.EncodeToString(receiver.Bytes) + "@02@" +
 			hex.EncodeToString([]byte(ticker)) + "@00@" + hex.EncodeToString(transferValue.Bytes()) + "@" +
-			hex.EncodeToString([]byte(egldTicker)) + "@00@" + hex.EncodeToString(egldTransferValue.Bytes())
+			hex.EncodeToString([]byte(rewaTicker)) + "@00@" + hex.EncodeToString(rewaTransferValue.Bytes())
 		gasLimit := minGasLimit*2 + len(txDataTransfer)*1500 + extraGasMultiDCDTTransferPerToken*2
 		senderNonce := getNonce(t, cs, sender)
 		relayedTx := generateRelayedV3Transaction(sender.Bytes, senderNonce, sender.Bytes, relayer.Bytes, big.NewInt(0), txDataTransfer, uint64(gasLimit))
@@ -686,7 +686,7 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 
 		// check sender balance
 		senderBalanceAfter := getBalance(t, cs, sender)
-		expectedSenderBalanceDiff := egldTransferValue
+		expectedSenderBalanceDiff := rewaTransferValue
 		senderBalanceDiff := big.NewInt(0).Sub(senderBalanceBefore, senderBalanceAfter)
 		require.Equal(t, expectedSenderBalanceDiff.String(), senderBalanceDiff.String())
 
@@ -703,7 +703,7 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 		relayerBalanceAfter := getBalance(t, cs, relayer)
 		relayerBalanceDiff := big.NewInt(0).Sub(initialBalance, relayerBalanceAfter)
 		if relayedByReceiver {
-			relayerBalanceDiff.Add(relayerBalanceDiff, egldTransferValue)
+			relayerBalanceDiff.Add(relayerBalanceDiff, rewaTransferValue)
 		}
 		require.Equal(t, fee.String(), relayerBalanceDiff.String())
 
@@ -718,10 +718,10 @@ func testRelayedV3MultiDCDTTransferWithREWA(
 		dcdtBalanceReceiver := getDCDTBalance(t, cs, receiver, 0, ticker)
 		require.Equal(t, transferValue.String(), dcdtBalanceReceiver.String())
 
-		// check receiver egld balance
+		// check receiver rewa balance
 		if !relayedByReceiver {
 			receiverBalanceAfter := getBalance(t, cs, receiver)
-			expectedReceiverBalanceAfter := big.NewInt(0).Add(initialBalance, egldTransferValue)
+			expectedReceiverBalanceAfter := big.NewInt(0).Add(initialBalance, rewaTransferValue)
 			require.Equal(t, expectedReceiverBalanceAfter.String(), receiverBalanceAfter.String())
 		}
 	}

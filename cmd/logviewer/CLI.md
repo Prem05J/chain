@@ -12,7 +12,7 @@ USAGE:
    logviewer [global options]
    
 AUTHOR:
-   The DharitrI Team <contact@dharitri.com>
+   The DharitrI Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --address value            Address and port number on which the application will try to connect to the drt-go-chain node (default: "127.0.0.1:8080")

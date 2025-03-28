@@ -158,7 +158,7 @@ func getAccountDataTrie(tb testing.TB, testContext *vm.VMTestContext, address []
 	return dataTrieInstance
 }
 
-func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []byte, egldValue *big.Int) {
+func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []byte, rewaValue *big.Int) {
 	account, err := accnts.LoadAccount(pubKey)
 	require.Nil(t, err)
 
@@ -166,7 +166,7 @@ func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []b
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
 	err = accnts.SaveAccount(userAccount)

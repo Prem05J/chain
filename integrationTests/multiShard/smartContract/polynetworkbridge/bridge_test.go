@@ -32,9 +32,9 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 		SCProcessorV2EnableEpoch:            integrationTests.UnreachableEpoch,
 		FixAsyncCallBackArgsListEnableEpoch: integrationTests.UnreachableEpoch,
 	}
-	arwenVersion := config.WasmVMVersionByEpoch{Version: "v1.4"}
+	andesVersion := config.WasmVMVersionByEpoch{Version: "v1.4"}
 	vmConfig := &config.VirtualMachineConfig{
-		WasmVMVersions:                    []config.WasmVMVersionByEpoch{arwenVersion},
+		WasmVMVersions:                    []config.WasmVMVersionByEpoch{andesVersion},
 		TransferAndExecuteByUserAddresses: []string{"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qkswz60"},
 	}
 	nodes := integrationTests.CreateNodesWithEnableEpochsAndVmConfig(

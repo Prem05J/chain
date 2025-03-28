@@ -729,7 +729,7 @@ const (
 	MetricDynamicDCDTEnableEpoch = "drt_dynamic_dcdt_enable_epoch"
 
 	// MetricREWAInMultiTransferEnableEpoch represents the epoch when REWA in multi transfer feature is enabled
-	MetricREWAInMultiTransferEnableEpoch = "drt_egld_in_multi_transfer_enable_epoch"
+	MetricREWAInMultiTransferEnableEpoch = "drt_rewa_in_multi_transfer_enable_epoch"
 
 	// MetricCryptoOpcodesV2EnableEpoch represents the epoch when crypto opcodes v2 feature is enabled
 	MetricCryptoOpcodesV2EnableEpoch = "drt_crypto_opcodes_v2_enable_epoch"

@@ -12,7 +12,7 @@ USAGE:
    seednode [global options]
    
 AUTHOR:
-   The DharitrI Team <contact@dharitri.com>
+   The DharitrI Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --port [p2p port]                      The [p2p port] number on which the application will start. Can use single values such as `0, 10230, 15670` or range of ports such as `5000-10000` (default: "10000")

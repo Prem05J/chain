@@ -959,10 +959,10 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 	parentOwner := []byte("12345678901234567890123456789011")
 	require.Equal(t, uint32(1), testContextParentSC.ShardCoordinator.ComputeId(parentOwner))
 
-	egldBalance := big.NewInt(1000000000000)
+	rewaBalance := big.NewInt(1000000000000)
 
-	_, _ = vm.CreateAccount(testContextFunderSC.Accounts, funderOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextParentSC.Accounts, parentOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFunderSC.Accounts, funderOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextParentSC.Accounts, parentOwner, 0, rewaBalance)
 
 	gasPrice := uint64(10)
 	deployGasLimit := uint64(5000000)
