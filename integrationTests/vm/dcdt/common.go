@@ -334,6 +334,7 @@ func CheckForwarderRawSavedCallbackArgs(
 		require.Equal(t, vmcommon.Ok, vmOutputArgs.ReturnCode)
 		require.GreaterOrEqual(t, len(vmOutputArgs.ReturnData), 1)
 		if expectedResultCode == vmcommon.Ok {
+			fmt.Println(vmOutputArgs.ReturnData[0])
 			require.Equal(t, []byte{0x0}, vmOutputArgs.ReturnData[0])
 			require.Equal(t, expectedArguments, vmOutputArgs.ReturnData[1:])
 		} else {
