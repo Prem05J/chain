@@ -1,0 +1,8 @@
+BatchDelaySeconds = 2
+FilePath = "AccountsTrie"
+MaxBatchSize = 45000
+MaxOpenFiles = 10
+NumShards = 4
+ShardIDProviderType = "BinarySplit"
+Type = "LvlDBSerial"
+UseTmpAsFilePath = false

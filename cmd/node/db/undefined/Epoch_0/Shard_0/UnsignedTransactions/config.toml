@@ -1,0 +1,8 @@
+BatchDelaySeconds = 2
+FilePath = "UnsignedTransactions"
+MaxBatchSize = 20000
+MaxOpenFiles = 10
+NumShards = 0
+ShardIDProviderType = ""
+Type = "LvlDBSerial"
+UseTmpAsFilePath = false

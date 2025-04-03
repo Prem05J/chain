@@ -1,0 +1,11 @@
+=============== Apr 3, 2025 (IST) ===============
+10:31:31.142547 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:31:31.146155 db@open opening
+10:31:31.146526 version@stat F·[] S·0B[] Sc·[]
+10:31:31.147850 db@janitor F·2 G·0
+10:31:31.147859 db@open done T·1.682646ms
+10:31:33.178284 transaction@flush created L0@2 N·295 S·1MiB "01e..2ee,v144":"ff4..53b,v82"
+10:31:33.180875 transaction@flush created L0@3 N·73 S·486KiB "02c..ab1,v322":"fc2..47f,v341"
+10:31:33.180897 version@stat F·[2] S·2MiB[2MiB] Sc·[0.50]
+10:31:41.949092 db@close closing
+10:31:41.949107 db@close done T·14.618µs

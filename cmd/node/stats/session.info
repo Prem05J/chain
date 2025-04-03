@@ -1,0 +1,59 @@
+PkBlockSign:0cdcd0d8bdcea6c652253e23179e1ee6f88f24ace8f9832330bf63f3d90fd17c282246fcc7b0ca77443ba46207924f01ef2913d4316f74748777c576de4b9509fb994aa443d9e71a993c7591014189cf906f8845e83dfb97e97019b68647c508
+ShardId:0
+TotalShards:3
+AppVersion:undefined/go1.20.8/linux-amd64/f24beb731d
+GenesisTimeStamp:1743656520
+
+Started with parameters:
+genesis-file = ./config/genesis.json
+smart-contracts-file = ./config/genesisSmartContracts.json
+nodes-setup-file = ./config/nodesSetup.json
+config = ./config/config.toml
+config-api = ./config/api.toml
+config-economics = ./config/economics.toml
+config-systemSmartContracts = ./config/systemSmartContractsConfig.toml
+config-ratings = ./config/ratings.toml
+config-preferences = ./config/prefs.toml
+config-external = ./config/external.toml
+p2p-config = ./config/p2p.toml
+full-archive-p2p-config = ./config/fullArchiveP2P.toml
+epoch-config = ./config/enableEpochs.toml
+round-config = ./config/enableRounds.toml
+gas-costs-config = ./config/gasSchedules
+sk-index = 0
+validator-key-pem-file = ./config/validatorKey.pem
+all-validator-keys-pem-file = ./config/allValidatorsKeys.pem
+port = 0
+full-archive-port = 0
+profile-mode = false
+use-health-service = false
+storage-cleanup = false
+gops-enable = false
+rest-api-interface = localhost:8080
+rest-api-debug = false
+disable-ansi-color = false
+log-level = *:INFO 
+log-save = false
+log-correlation = false
+log-logger-name = false
+use-log-view = false
+bootstrap-round-index = 18446744073709551615
+num-epochs-to-keep = 2
+num-active-persisters = 2
+start-in-epoch = false
+import-db-no-sig-check = false
+import-db-save-epoch-root-hash = false
+redundancy-level = 0
+full-archive = false
+mem-ballast = 0
+memory-usage-to-create-profiles = 2415919104
+force-start-from-network = false
+disable-consensus-watchdog = false
+serialize-snapshots = false
+no-key = false
+p2p-key-pem-file = ./config/p2pKey.pem
+snapshots-enabled = true
+repopulate-tokens-supplies = false
+p2p-prometheus-metrics = false
+help, h = <nil>
+version, v = <nil>
